@@ -4,7 +4,9 @@ import { moviedata } from "./data";
 import NavBar from "./component/NavBar";
 import MovieList from "./component/MovieList";
 import AddMovie from "./component/AddMovie";
-
+import {Routes , Route} from "react-router-dom";
+import Home from "./component/Home";
+import Trailer from "./component/Trailer";
 
 function App() {
   const [movielist, setMovielist] = useState(moviedata);
@@ -26,8 +28,12 @@ function App() {
   return (
     <div className="App">
         <NavBar title={title} handleChange={handleChange} rate={rate} ratingChanged={ratingChanged} />
-        <MovieList movies={movielist.filter((movie) => movie.title.toUpperCase().includes(title.toUpperCase()) && movie.rate >= rate)}/>
-        <AddMovie handleAdd={handleAdd} />
+        <Routes>
+         <Route path="" element={<Home/>}/>
+        <Route path="/trailer" element={< Trailer/>}/>
+        <Route path="/MovieList" element={ <MovieList movies={movielist.filter((movie) => movie.title.toUpperCase().includes(title.toUpperCase()) && movie.rate >= rate)}/>}/>
+        <Route path="/AddMovie" element={ <AddMovie handleAdd={handleAdd} />}/>
+        </Routes> 
     </div>
   );
 }

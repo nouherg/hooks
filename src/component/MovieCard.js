@@ -1,5 +1,6 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Button , Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import ReactStars from "react-stars";
 
 const MovieCard = ({ movie, }) => {
@@ -19,6 +20,22 @@ const MovieCard = ({ movie, }) => {
                             edit={false}
                         />
                     </Card.Text>
+                    <div className="d-flex justify-content-around">
+                       <Link to='/trailer'  target="_blank">
+                       <Button variant="primary">
+                        more details
+                       </Button>
+                       </Link>
+                       <div>
+        <Button className='button' variant="primary"
+                       type="button"
+                       onClick={(e) => {
+                         e.preventDefault();
+                         window.location.href=`${movie.trailer}`; 
+                         }}> watch the trailer 
+       </Button>
+    </div>
+                    </div>
                 </Card.Body>
             </Card>
         </div>
